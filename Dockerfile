@@ -49,9 +49,9 @@ RUN mkdir -p /app/app/migrations && \
 # Create a startup script that will handle migrations and then start the server
 RUN echo '#!/bin/bash\n\
 echo "Making migrations..."\n\
-python manage.py makemigrations --noinput --settings=config.settings.dev\n\
+python manage.py makemigrations --noinput\n\
 echo "Applying migrations..."\n\
-python manage.py migrate --noinput --settings=config.settings.dev\n\
+python manage.py migrate --noinput\n\
 echo "Starting server..."\n\
 exec gunicorn config.wsgi:application --bind 0.0.0.0:8000\n\
 ' > /app/start.sh && \

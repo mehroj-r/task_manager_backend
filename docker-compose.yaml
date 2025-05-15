@@ -14,7 +14,7 @@ services:
       - DJANGO_SECRET_KEY==${DJANGO_SECRET_KEY}
       - BOT_API_KEY=${BOT_API_KEY}
       - BOT_API_TOKEN=${BOT_API_TOKEN}
-      - DJANGO_SETTINGS_MODULE=config.settings.prod
+      - DJANGO_SETTINGS_MODULE=config.settings.dev
     depends_on:
       - db
     networks:
