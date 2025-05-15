@@ -5,6 +5,8 @@ from .base import *
 SECRET_KEY = os.environ.get('DJANGO_SECRET_KEY')
 DEBUG = False
 
+ALLOWED_HOSTS = ['localhost']
+
 # Database env values
 DB_NAME = os.getenv("DB_NAME")
 DB_USER_NM = os.getenv("DB_USER_NM")
