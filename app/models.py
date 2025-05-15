@@ -1,12 +1,27 @@
+from django.contrib.auth.base_user import AbstractBaseUser
+from django.contrib.auth.hashers import UNUSABLE_PASSWORD_PREFIX
+from django.contrib.auth.models import PermissionsMixin
 from django.db import models
 
-class TelegramUser(models.Model):
+from app.utils import TelegramUserManager
 
-    telegram_id = models.BigIntegerField(unique=True)
-    username = models.CharField(max_length=255, blank=True, null=True)
-    first_name = models.CharField(max_length=255, blank=True, null=True)
-    last_name = models.CharField(max_length=255, blank=True, null=True)
-    language_code = models.CharField(max_length=10, blank=True, null=True)
+
+class TelegramUser(AbstractBaseUser, PermissionsMixin):
+
+    telegram_id = models.BigIntegerField(unique=True, primary_key=True, null=False, blank=False)
+    username = models.CharField(max_length=255)
+    first_name = models.CharField(max_length=255)
+    last_name = models.CharField(max_length=255, null=True, blank=True)
+    language_code = models.CharField(max_length=10)
+
+    is_active = models.BooleanField(default=True)
+    is_staff = models.BooleanField(default=False)
+
+    USERNAME_FIELD = "telegram_id"
+    REQUIRED_FIELDS = []
+
+    password = models.CharField(max_length=128, default=UNUSABLE_PASSWORD_PREFIX)
+    objects = TelegramUserManager()
 
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
@@ -35,7 +50,7 @@ class Remainder(models.Model):
 
     user = models.ForeignKey(TelegramUser, on_delete=models.CASCADE, related_name='reminders')
     task = models.ForeignKey(Task, on_delete=models.CASCADE, related_name='reminders')
-    time = models.TimeField()
+    time = models.DateTimeField()
 
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
