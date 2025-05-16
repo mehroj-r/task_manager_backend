@@ -1,11 +1,9 @@
-import os
-from datetime import timedelta
 from .base import *
 
 SECRET_KEY = os.environ.get('DJANGO_SECRET_KEY')
 DEBUG = False
 
-ALLOWED_HOSTS = ['localhost']
+ALLOWED_HOSTS += ['localhost']
 
 # Database env values
 DB_NAME = os.getenv("DB_NAME")

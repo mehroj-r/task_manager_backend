@@ -30,6 +30,7 @@ jobs:
             echo "DJANGO_SECRET_KEY=${{ secrets.DJANGO_SECRET_KEY }}" > .env
             echo "BOT_API_KEY=${{ secrets.BOT_API_KEY }}" >> .env
             echo "BOT_API_TOKEN=${{ secrets.BOT_API_TOKEN }}" >> .env
+            echo "DJANGO_HOST=${{ secrets.SSH_HOST }}" >> .env
     
             docker-compose down --volumes=false
             docker-compose up --build -d

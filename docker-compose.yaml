@@ -5,7 +5,6 @@ services:
     ports:
       - "8005:8000"
     environment:
-      - PIPELINE=production
       - DB_IP=db
       - DB_PORT=5432
       - DB_NAME=task_manager_db
@@ -14,6 +13,7 @@ services:
       - DJANGO_SECRET_KEY==${DJANGO_SECRET_KEY}
       - BOT_API_KEY=${BOT_API_KEY}
       - BOT_API_TOKEN=${BOT_API_TOKEN}
+      - DJANGO_HOST=${DJANGO_HOST}
       - DJANGO_SETTINGS_MODULE=config.settings.dev
     depends_on:
       - db
