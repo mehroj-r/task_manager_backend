@@ -7,7 +7,7 @@ class UserSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = TelegramUser
-        fields = ('username', 'first_name', 'last_name', 'telegram_id', 'language_code', 'created_at')
+        fields = ('username', 'first_name', 'last_name', 'id', 'language_code', 'created_at')
 
 
 class TaskSerializer(serializers.ModelSerializer):

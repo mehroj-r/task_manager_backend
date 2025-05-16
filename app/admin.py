@@ -4,8 +4,8 @@ from app.models import TelegramUser, Task, Remainder
 
 @admin.register(TelegramUser)
 class UserAdmin(admin.ModelAdmin):
-    list_display = ('telegram_id', 'username', 'first_name', 'last_name', 'language_code', 'created_at')
-    search_fields = ('telegram_id', 'username')
+    list_display = ('id', 'username', 'first_name', 'last_name', 'language_code', 'created_at')
+    search_fields = ('id', 'username')
 
 @admin.register(Task)
 class TaskAdmin(admin.ModelAdmin):

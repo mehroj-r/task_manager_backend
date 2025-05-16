@@ -17,6 +17,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'rest_framework',
+    'rest_framework_simplejwt',
     'api',
     'app',
 ]
@@ -97,10 +98,16 @@ REST_FRAMEWORK = {
     'DEFAULT_AUTHENTICATION_CLASSES': [
         'rest_framework.authentication.SessionAuthentication',
         'rest_framework.authentication.TokenAuthentication',
-        'config.auth.TelegramBotAuth',
+        'rest_framework_simplejwt.authentication.JWTAuthentication',
     ]
 
 }
 
 BOT_API_KEY = os.getenv('BOT_API_KEY')
 BOT_API_SECRET = os.getenv('BOT_API_TOKEN')
+
+SIMPLE_JWT = {
+    'ROTATE_REFRESH_TOKENS': True,
+    'BLACKLIST_AFTER_ROTATION': True,
+    'AUTH_HEADER_TYPES': ('Bearer',),
+}

@@ -1,3 +1,5 @@
+from datetime import timedelta
+
 from .base import *
 
 SECRET_KEY = os.environ.get('DJANGO_SECRET_KEY')
@@ -36,3 +38,6 @@ LOGGING = {
         'level': 'INFO',
     },
 }
+
+SIMPLE_JWT['ACCESS_TOKEN_LIFETIME'] = timedelta(hours=6)
+SIMPLE_JWT['REFRESH_TOKEN_LIFETIME'] = timedelta(days=1)
