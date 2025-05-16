@@ -1,11 +1,11 @@
 from django.contrib.auth.models import BaseUserManager
 
 class TelegramUserManager(BaseUserManager):
-    def create_user(self, telegram_id, **extra_fields):
-        if not telegram_id:
+    def create_user(self, id, **extra_fields):
+        if not id:
             raise ValueError("The Telegram ID must be set")
         user = self.model(
-            telegram_id=telegram_id,
+            id=id,
             **extra_fields
         )
         # no password for bot users
@@ -13,7 +13,7 @@ class TelegramUserManager(BaseUserManager):
         user.save(using=self._db)
         return user
 
-    def create_superuser(self, telegram_id, **extra_fields):
+    def create_superuser(self, id, **extra_fields):
         extra_fields.setdefault("is_staff", True)
         extra_fields.setdefault("is_superuser", True)
 
@@ -22,10 +22,10 @@ class TelegramUserManager(BaseUserManager):
         if not extra_fields.get("is_superuser"):
             raise ValueError("Superuser must have is_superuser=True.")
 
-        if not telegram_id:
+        if not id:
             raise ValueError("The Telegram ID must be set")
         user = self.model(
-            telegram_id=telegram_id,
+            id=id,
             **extra_fields
         )
 

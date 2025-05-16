@@ -8,7 +8,7 @@ from app.utils import TelegramUserManager
 
 class TelegramUser(AbstractBaseUser, PermissionsMixin):
 
-    telegram_id = models.BigIntegerField(unique=True, primary_key=True, null=False, blank=False)
+    id = models.BigIntegerField(unique=True, primary_key=True, null=False, blank=False)
     username = models.CharField(max_length=255)
     first_name = models.CharField(max_length=255)
     last_name = models.CharField(max_length=255, null=True, blank=True)
@@ -17,7 +17,7 @@ class TelegramUser(AbstractBaseUser, PermissionsMixin):
     is_active = models.BooleanField(default=True)
     is_staff = models.BooleanField(default=False)
 
-    USERNAME_FIELD = "telegram_id"
+    USERNAME_FIELD = "id"
     REQUIRED_FIELDS = []
 
     password = models.CharField(max_length=128, default=UNUSABLE_PASSWORD_PREFIX)
@@ -28,7 +28,7 @@ class TelegramUser(AbstractBaseUser, PermissionsMixin):
     deleted_at = models.DateTimeField(blank=True, null=True)
 
     def __str__(self):
-        return f"@{self.username}" or f"ID-{str(self.telegram_id)}"
+        return f"@{self.username}" or f"ID-{str(self.id)}"
 
 class Task(models.Model):
 
