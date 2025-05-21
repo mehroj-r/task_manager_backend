@@ -33,8 +33,8 @@ class TelegramUser(AbstractBaseUser, PermissionsMixin):
 class Task(models.Model):
 
     user = models.ForeignKey(TelegramUser, on_delete=models.CASCADE, related_name='tasks')
-    title = models.CharField(max_length=255)
-    description = models.TextField(blank=True)
+    title = models.CharField(max_length=150)
+    description = models.TextField(blank=True, max_length=500)
     due_date = models.DateTimeField(blank=True, null=True)
     is_completed = models.BooleanField(default=False)
     reminder_sent = models.BooleanField(default=False)
